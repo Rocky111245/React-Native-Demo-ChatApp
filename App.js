@@ -1,18 +1,30 @@
 // App.js
-import React from 'react';
+import React, { useEffect } from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AuthProvider, useAuth } from './src/contexts/AuthContext';
 import LoginScreen from './src/screens/auth/LoginScreen';
-import HomeScreen from './src/screens/HomeScreen';
+import UserProfileScreen from './src/screens/UserProfileScreen';
+import { cleanupAllListeners } from './src/services/firestoreApi';
 
-function AppContent() {
+// Router that decides which screen to show
+const AppNavigator = () => {
   const { user } = useAuth();
-  return user ? <HomeScreen /> : <LoginScreen />;
-}
+  return user ? <UserProfileScreen /> : <LoginScreen />;
+};
 
 export default function App() {
+  useEffect(() => {
+    // Cleanup Firestore listeners when the app unmounts
+    return () => {
+      cleanupAllListeners();
+    };
+  }, []);
+
   return (
-    <AuthProvider>
-      <AppContent />
-    </AuthProvider>
+    <SafeAreaProvider>
+      <AuthProvider>
+        <AppNavigator />
+      </AuthProvider>
+    </SafeAreaProvider>
   );
 }
