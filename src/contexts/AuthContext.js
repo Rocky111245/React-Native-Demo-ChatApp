@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  // Keep presence in sync when `user` changes and on unmount
+  // Keeps presence in sync when `user` changes and on unmount
   useEffect(() => {
     if (user?.uid) {
       setUserOnlineStatus(user.uid, true).catch(() => {});

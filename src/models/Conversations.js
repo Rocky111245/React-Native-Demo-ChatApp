@@ -23,7 +23,7 @@ export class Conversations {
     return rest;
   }
 
-  // Basic validation hook. This is optional.
+  // optional validation hook .
   static validate(obj) {
     const errors = [];
     if (!Array.isArray(obj.participants) || obj.participants.length < 2) {

@@ -4,8 +4,8 @@
  */
 import { db } from '../services/firebaseConfig';
 import {
-  collection, doc, query, where, orderBy, limit, onSnapshot,
-  serverTimestamp
+    collection, doc, query, where, orderBy, limit, onSnapshot,
+    serverTimestamp
 } from 'firebase/firestore';
 
 const msgsColl = () => collection(db, 'messages');
@@ -19,12 +19,12 @@ export const createNewMessageDocRef = () => doc(msgsColl());
  * Build a plain payload for a text message (no model usage here).
  */
 export const buildPlainTextMessagePayload = ({ conversationId, senderId, senderName, text }) => ({
-  conversationId,
-  senderId,
-  senderName: senderName || 'Unknown',
-  text: String(text),
-  type: 'text',
-  timestamp: serverTimestamp()
+    conversationId,
+    senderId,
+    senderName: senderName || 'Unknown',
+    text: String(text),
+    type: 'text',
+    timestamp: serverTimestamp()
 });
 
 /**
@@ -32,14 +32,14 @@ export const buildPlainTextMessagePayload = ({ conversationId, senderId, senderN
  * callback receives an array of plain objects.
  */
 export const subscribeMessagesByConversationAsc = (conversationId, callback, onError) => {
-  const q = query(
-    msgsColl(),
-    where('conversationId', '==', conversationId),
-    orderBy('timestamp', 'asc'),
-    limit(50)
-  );
-  return onSnapshot(q, snap => {
-    const items = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-    callback(items);
-  }, onError);
+    const q = query(
+        msgsColl(),
+        where('conversationId', '==', conversationId),
+        orderBy('timestamp', 'asc'),
+        limit(50)
+    );
+    return onSnapshot(q, snap => {
+        const items = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        callback(items);
+    }, onError);
 };

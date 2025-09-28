@@ -1,148 +1,188 @@
 // src/components/UsersList.styles.js
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions, Platform } from 'react-native';
+
+const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
+const isSmallScreen = screenWidth < 375;
+const isLargeScreen = screenWidth > 414;
 
 export default StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f8f9fa',
-    paddingHorizontal: 20,
-    paddingTop: 20,
-  },
-  header: {
-    marginBottom: 16,
-  },
-  headerTitle: {
-    fontSize: 20,
-    fontWeight: '600',
-    color: '#212529',
-    marginBottom: 4,
-  },
-  headerSubtitle: {
-    fontSize: 14,
-    color: '#6c757d',
-  },
-  listContainer: {
-    paddingBottom: 20,
-  },
-  userCard: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#ffffff',
-    padding: 16,
-    borderRadius: 12,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
+    container: {
+        flex: 1,
+        alignSelf: 'center',
+        width: '100%',
+        maxWidth: 720,
+        backgroundColor: '#f8f9fa',
+        paddingHorizontal: 16,
+        paddingTop: 8,
+        minHeight: 0,
     },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
-    elevation: 2,
-  },
-  avatarContainer: {
-    position: 'relative',
-    marginRight: 12,
-  },
-  avatarText: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    backgroundColor: '#3b82f6',
-    color: '#ffffff',
-    fontSize: 18,
-    fontWeight: '600',
-    textAlign: 'center',
-    textAlignVertical: 'center',
-    lineHeight: 48,
-  },
-  userInfo: {
-    flex: 1,
-  },
-  userName: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#212529',
-    marginBottom: 2,
-  },
-  userEmail: {
-    fontSize: 14,
-    color: '#6c757d',
-    marginBottom: 6,
-  },
-  statusContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  statusDot: {
-    width: 6,
-    height: 6,
-    borderRadius: 3,
-    marginRight: 6,
-  },
-  statusText: {
-    fontSize: 12,
-    color: '#6c757d',
-    fontWeight: '500',
-  },
-  chatIconContainer: {
-    position: 'relative',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: '#3b82f6',
-  },
-  chatIcon: {
-    fontSize: 18,
-    color: '#ffffff',
-  },
-  separator: {
-    height: 12,
-  },
-  loadingContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingVertical: 40,
-  },
-  loadingText: {
-    marginTop: 16,
-    fontSize: 16,
-    color: '#6c757d',
-  },
-  errorContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingVertical: 40,
-    paddingHorizontal: 20,
-  },
-  errorText: {
-    fontSize: 16,
-    color: '#dc3545',
-    textAlign: 'center',
-    marginBottom: 8,
-  },
-  errorSubtext: {
-    fontSize: 14,
-    color: '#6c757d',
-    textAlign: 'center',
-  },
-  emptyContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingVertical: 40,
-  },
-  emptyText: {
-    fontSize: 16,
-    color: '#6c757d',
-    marginBottom: 8,
-  },
-  emptySubtext: {
-    fontSize: 14,
-    color: '#9ca3af',
-    textAlign: 'center',
-  },
+
+    header: {
+        marginBottom: isSmallScreen ? 12 : 16,
+        paddingHorizontal: 4,
+    },
+    headerTitle: {
+        fontSize: isSmallScreen ? 18 : isLargeScreen ? 22 : 20,
+        fontWeight: '600',
+        color: '#212529',
+        marginBottom: 4,
+    },
+    headerSubtitle: {
+        fontSize: isSmallScreen ? 13 : 14,
+        color: '#6c757d',
+        lineHeight: isSmallScreen ? 18 : 20,
+    },
+
+    // This gives the Flatlist some space at bottom so it doesn't collide with footer
+    listContainer: {
+        paddingBottom: 16,
+    },
+
+    userCard: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: '#ffffff',
+        padding: isSmallScreen ? 12 : isLargeScreen ? 18 : 16,
+        borderRadius: 12,
+        ...Platform.select({
+            ios: {
+                shadowColor: '#000',
+                shadowOpacity: 0.08,
+                shadowRadius: 4,
+                shadowOffset: { width: 0, height: 2 },
+            },
+            android: { elevation: 3 },
+            default: {
+                shadowColor: '#000',
+                shadowOpacity: 0.06,
+                shadowRadius: 4,
+                shadowOffset: { width: 0, height: 2 },
+            },
+        }),
+        minHeight: isSmallScreen ? 72 : isLargeScreen ? 88 : 80,
+    },
+
+    avatarContainer: {
+        position: 'relative',
+        marginRight: isSmallScreen ? 10 : 12,
+    },
+    avatarText: {
+        width: isSmallScreen ? 40 : isLargeScreen ? 52 : 48,
+        height: isSmallScreen ? 40 : isLargeScreen ? 52 : 48,
+        borderRadius: isSmallScreen ? 20 : isLargeScreen ? 26 : 24,
+        backgroundColor: '#3b82f6',
+        color: '#ffffff',
+        fontSize: isSmallScreen ? 16 : isLargeScreen ? 20 : 18,
+        fontWeight: '600',
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        lineHeight: isSmallScreen ? 40 : isLargeScreen ? 52 : 48,
+    },
+
+    // Allow text block to shrink and ellipsize without pushing the chat icon off-screen
+    userInfo: {
+        flex: 1,
+        paddingRight: 8,
+        minWidth: 0,        // enables ellipsize inside flex rows
+    },
+    userName: {
+        fontSize: isSmallScreen ? 15 : isLargeScreen ? 17 : 16,
+        fontWeight: '600',
+        color: '#212529',
+        marginBottom: 2,
+    },
+    userEmail: {
+        fontSize: isSmallScreen ? 13 : 14,
+        color: '#6c757d',
+        marginBottom: isSmallScreen ? 4 : 6,
+    },
+
+    statusContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    statusDot: {
+        width: isSmallScreen ? 5 : 6,
+        height: isSmallScreen ? 5 : 6,
+        borderRadius: isSmallScreen ? 2.5 : 3,
+        marginRight: 6,
+    },
+    statusText: {
+        fontSize: isSmallScreen ? 11 : 12,
+        color: '#6c757d',
+        fontWeight: '500',
+    },
+
+    chatIconContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: isSmallScreen ? 36 : isLargeScreen ? 44 : 40,
+        height: isSmallScreen ? 36 : isLargeScreen ? 44 : 40,
+        borderRadius: isSmallScreen ? 18 : isLargeScreen ? 22 : 20,
+        backgroundColor: '#3b82f6',
+        marginLeft: 8,
+    },
+    chatIcon: {
+        fontSize: isSmallScreen ? 16 : isLargeScreen ? 20 : 18,
+        color: '#ffffff',
+    },
+
+    separator: {
+        height: isSmallScreen ? 8 : isLargeScreen ? 16 : 12,
+    },
+
+    // Loading / error / empty states sized to feel balanced on any screen
+    loadingContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingVertical: Math.max(screenHeight * 0.1, 80),
+        minHeight: 150,
+    },
+    loadingText: {
+        marginTop: 16,
+        fontSize: isSmallScreen ? 15 : 16,
+        color: '#6c757d',
+        textAlign: 'center',
+    },
+
+    errorContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingVertical: Math.max(screenHeight * 0.08, 64),
+        paddingHorizontal: Math.min(screenWidth * 0.08, 40),
+        minHeight: 120,
+    },
+    errorText: {
+        fontSize: isSmallScreen ? 15 : 16,
+        color: '#dc3545',
+        textAlign: 'center',
+        marginBottom: 8,
+        lineHeight: 22,
+    },
+    errorSubtext: {
+        fontSize: isSmallScreen ? 13 : 14,
+        color: '#6c757d',
+        textAlign: 'center',
+        lineHeight: 20,
+    },
+
+    emptyContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingVertical: Math.max(screenHeight * 0.08, 64),
+        paddingHorizontal: Math.min(screenWidth * 0.1, 48),
+        minHeight: 120,
+    },
+    emptyText: {
+        fontSize: isSmallScreen ? 15 : 16,
+        color: '#6c757d',
+        marginBottom: 8,
+        textAlign: 'center',
+    },
+    emptySubtext: {
+        fontSize: isSmallScreen ? 13 : 14,
+        color: '#9ca3af',
+        textAlign: 'center',
+        lineHeight: 20,
+    },
 });

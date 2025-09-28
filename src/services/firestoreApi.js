@@ -1,38 +1,49 @@
 // src/services/FirestoreApi.js
-// Thin façade: forward-only; no logic.
+// Forward-only; no logic.
 
+// Users
 export {
-  upsertUserProfile,
-  setUserOnlineStatus,
-  getUserById,
-  listUsersOrderedByName,
+    upsertUserProfile,
+    setUserOnlineStatus,
+    getUserById,
+    listUsersOrderedByName,
 } from '../repos/usersRepo.js';
 
+// Direct conversations
 export {
-  getConversationByParticipants,
-  createDirectConversationIfMissing,
-  getExistingDirectConversationOrCreateNew,
-  markConversationReadForUser,
-  subscribeUserConversationsOrdered,
-  appendMessageAndBumpUnreadTxn,
+    getConversationByParticipants,
+    createDirectConversationIfMissing,
+    getExistingDirectConversationOrCreateNew,
+    markConversationReadForUser,
+    subscribeUserConversationsOrdered,
+    appendMessageAndBumpUnreadTxn,
 } from '../repos/conversationsRepo.js';
 
+// Messages (shared)
 export {
-  createNewMessageDocRef,
-  buildPlainTextMessagePayload,
-  subscribeMessagesByConversationAsc,
+    createNewMessageDocRef,
+    buildPlainTextMessagePayload,
+    subscribeMessagesByConversationAsc,
 } from '../repos/messagesRepo.js';
 
+// Groups
 export {
-  canSendMessageNow,
-  clearRateLimits,
-} from '../utils/rateLimits.js';
+    subscribeUserGroupsOrdered,
+    findGroupByParticipantsKey,
+    createGroupConversation,
+    markGroupConversationReadForUser,
+    appendGroupMessageAndBumpUnreadTxn,
+} from '../repos/groupsRepo.js';
 
-export { conversationIdForUsers } from '../utils/ids.js';
+// Rate limiting
+export { canSendMessageNow, clearRateLimits } from '../utils/rateLimits.js';
 
-// global listener registry (optional)
+// IDs / keys
+export { conversationIdForUsers, participantsKey } from '../utils/ids.js';
+
+// Global listener registry
 export {
-  registerListener,
-  cleanupListener,
-  cleanupAllListeners,
+    registerListener,
+    cleanupListener,
+    cleanupAllListeners,
 } from '../utils/listeners.js';
