@@ -138,6 +138,7 @@ const MessagesList = ({ conversationId, currentUserId }) => {
                 keyExtractor={keyExtractor}
                 contentContainerStyle={styles.messagesList}
                 showsVerticalScrollIndicator={false}
+                keyboardShouldPersistTaps="handled"
                 removeClippedSubviews={true}
                 maxToRenderPerBatch={10}
                 updateCellsBatchingPeriod={50}

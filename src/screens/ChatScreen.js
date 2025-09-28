@@ -1,6 +1,6 @@
 // src/screens/ChatScreen.js
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { View, Text, StatusBar } from 'react-native';
+import { View, Text, StatusBar, KeyboardAvoidingView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ChatHeader from '../components/ChatHeader';
 import MessagesList from '../components/MessagesList';
@@ -144,12 +144,17 @@ const ChatScreen = ({ otherUser, currentUserId, currentUserName, onClose, onConv
     }
 
     return (
-        <SafeAreaView style={styles.container}>
-            <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
-            <ChatHeader user={otherUser} onClose={handleCloseChat} />
-            <MessagesList conversationId={conversation?.id} currentUserId={currentUserId} />
-            <MessagesInput onSendMessage={handleSendMessage} />
-        </SafeAreaView>
+        <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            style={styles.container}
+        >
+            <SafeAreaView style={styles.container}>
+                <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
+                <ChatHeader user={otherUser} onClose={handleCloseChat} />
+                <MessagesList conversationId={conversation?.id} currentUserId={currentUserId} />
+                <MessagesInput onSendMessage={handleSendMessage} />
+            </SafeAreaView>
+        </KeyboardAvoidingView>
     );
 };
 
