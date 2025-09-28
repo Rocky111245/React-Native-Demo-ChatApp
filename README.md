@@ -24,14 +24,14 @@ This project is both a functional messaging app and a reference architecture for
 - [Screenshots](#-screenshots)
 - [Testing & Build Access](#-testing--build-access)
 - [Core Implementations](#-core-implementations--deep-dive)
-  - [Authentication](#-authentication--context--overview)
-  - [Firebase Services](#-firebase-services--overview)
-  - [Firestore API](#-firestore-api--access-layer)
-  - [Models](#-models--overview)
-  - [Repositories](#-repositories--overview)
-  - [UI Components](#-ui-components--overview)
-  - [Screens](#-screens--overview)
-  - [Utilities](#-utilities--overview)
+  - [Authentication](#-authentication--context)
+  - [Firebase Services](#-firebase-services)
+  - [Firestore API](#-firestore-api)
+  - [Models](#-models)
+  - [Repositories](#-repositories)
+  - [UI Components](#-ui-components)
+  - [Screens](#-screens)
+  - [Utilities](#-utilities)
 - [License](#-license)
 - [Final Notes](#-final-notes)
 
@@ -299,7 +299,7 @@ Used In:
 - **🧹 Clean Import Flow**
   - Promotes consistency, discoverability, and testability across the app
 
-## 🧱 Models — Overview
+## 🧱 Models
 
 Models define the **shape**, **default values**, and **validation rules** for key data types like users, conversations, and messages.  
 They contain **no Firestore logic** and are used purely for constructing and validating plain objects used in the app.
