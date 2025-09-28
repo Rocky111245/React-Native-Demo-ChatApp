@@ -3,7 +3,8 @@
 
 ## 📱 About the App
 
-This is a full-featured **React Native chat application** designed to showcase the core building blocks of a modern mobile messaging platform.  
+This is a full-featured **React Native chat application** designed to showcase the core building blocks of a modern mobile messaging platform. 
+
 It demonstrates how to implement **secure authentication**, **real-time communication**, and **scalable architecture** using Firebase as the backend and Expo for rapid mobile development.
 
 Built with a clean separation of concerns, the app highlights **best practices in state management, performance tuning, UI reusability, and Firestore integration**. Whether it’s one-on-one chats or dynamic group conversations, the app provides a production-style baseline for building real-world mobile messaging features.
@@ -31,7 +32,6 @@ This project is both a functional messaging app and a reference architecture for
   - [UI Components](#-ui-components--overview)
   - [Screens](#-screens--overview)
   - [Utilities](#-utilities--overview)
-- [Performance Notes](#-performance-notes)
 - [License](#-license)
 - [Final Notes](#-final-notes)
 
@@ -136,18 +136,25 @@ The application follows a clean, layered architecture that prioritizes **separat
 
 This app is built with **Expo** and can be tested instantly on **Android** by downloading the app from the below QR code or the link. The app is also provided as .apk in the target releases of this github repo.
 
-### 🔗 Public Build Link
+2 ways to do this. It is best to download from the releases section of this github repo.
+
+### 🔗 Public App Link
+Go to releases or visit this link to download. 
+
+https://github.com/Rocky111245/React-Native-Demo-ChatApp/releases/download/v1.0.0/application-ca8044d9-4ce3-40f2-aa56-0ca39e7960fe.apk
 
 
 ### 📱 QR Code
-Scan this QR code with the **Expo Go app** to launch the app immediately:
+Scan this QR code to get access to the App download:
+
+<img width="360" height="403" alt="image" src="https://github.com/user-attachments/assets/324de6d6-7f5a-4829-b196-9bf96bf886e8" />
 
 ---
 ## 🔧 Core Implementations — Deep Dive
 
 ---
 
-## 🔐 Authentication & Context — Overview
+## 🔐 Authentication & Context 
 
 Authentication in this app is managed using **Firebase Auth** and centralized in a custom **AuthContext**.  
 This allows the entire app to access the current user's state and ensures consistent handling of login, logout, and online presence.  
@@ -198,7 +205,7 @@ App starts
 - **📤 Graceful Teardown**
   - Automatically sets user offline when app is closed or context is unmounted
 
-## 🔌 Firebase Services — Overview
+## 🔌 Firebase Services 
 
 Firebase provides the backend foundation for authentication, data storage, and real-time messaging in this app.  
 All services are initialized and exposed in a single config file to keep setup consistent and centralized.
@@ -245,7 +252,7 @@ Used In:
   - `auth` and `db` are imported throughout the app via a consistent interface
 
 
-## 🧰 Firestore API — Access Layer
+## 🧰 Firestore API 
 
 To simplify access and enforce a clean separation of concerns, the app uses a **forward-only service façade**.
 
@@ -339,7 +346,7 @@ They contain **no Firestore logic** and are used purely for constructing and val
 
 
 
-## 📦 Repositories — Overview
+## 📦 Repositories
 
 Repositories encapsulate **all Firestore read/write logic**.  
 They return plain JavaScript objects — no model instances — and contain no UI or app logic.
@@ -391,7 +398,7 @@ They return plain JavaScript objects — no model instances — and contain no U
 
 
 
-## 🧩 UI Components — Overview
+## 🧩 UI Components
 
 All UI components in this project are **presentational** — they do not contain business logic or direct Firestore access.  
 Instead, they receive data and handlers from the screen layer, which in turn consumes logic from `firestoreApi.js` and `AuthContext`.  
@@ -446,7 +453,7 @@ Each component is paired with a corresponding `.styles.js` file for consistent t
 
 
 
-## 🧭 Screens — Overview
+## 🧭 Screens
 
 Screens are responsible for **gluing together components, context, and services**.  
 They orchestrate data fetching, subscriptions, state management, and navigation — but **do not define UI or Firestore logic themselves**.
@@ -503,7 +510,7 @@ They orchestrate data fetching, subscriptions, state management, and navigation 
 
 
 
-## 🛠 Utilities — Overview
+## 🛠 Utilities
 
 The **utils layer** provides small, reusable helpers that support validation, throttling, ID generation, and subscription management.  
 These are imported throughout the app but contain no UI or Firestore logic themselves.
@@ -550,7 +557,16 @@ These are imported throughout the app but contain no UI or Firestore logic thems
 - **🧹 Clean Separation**
   - These functions are pure and side-effect-free (except listener registry), making them easy to test and reuse
 
----
+## 📄 License
+
+This project is licensed under a **Custom Evaluation License**.
+
+- 🚫 **No Commercial Use** — You may not use this code, in whole or in part, for any commercial purposes.  
+- 🚫 **No Modification or Redistribution** — You may not modify, distribute, sublicense, or reuse this codebase.  
+- ✅ **Evaluation Only** — This code is provided solely for the purpose of demonstrating skills and for evaluation by reviewers.  
+
+Any other use is strictly prohibited without the author’s explicit written permission.  
+
 
 ## ✅ Final Notes
 
